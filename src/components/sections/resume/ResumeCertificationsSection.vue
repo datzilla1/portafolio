@@ -51,14 +51,7 @@
             :style="{ '--tech-accent': tech.accent }"
           >
             <span class="tech-logo-card__mark" :style="{ '--tech-accent': tech.accent }">
-              <img
-                v-if="!isLogoBroken(tech.label)"
-                :src="tech.logo"
-                :alt="`Logo de ${tech.label}`"
-                loading="lazy"
-                @error="markLogoBroken(tech.label)"
-              />
-              <span v-else class="tech-logo-card__fallback">{{ getTechFallback(tech.label) }}</span>
+              <v-icon :icon="tech.icon" size="30" class="tech-logo-card__icon" />
             </span>
             <strong class="tech-logo-card__title">{{ tech.label }}</strong>
             <span class="tech-logo-card__domain">{{ tech.category }}</span>
@@ -92,7 +85,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import SectionHeader from '../../SectionHeader.vue'
 import { certifications, skillGroups } from '../../../data/portfolio.js'
 
@@ -125,85 +118,85 @@ const primaryTechnologySource = [
     label: 'AWS',
     category: 'Cloud',
     accent: '#ff9900',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+    icon: 'mdi-aws',
   },
   {
     label: 'C#',
     category: 'Backend',
     accent: '#512bd4',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg',
+    icon: 'mdi-language-csharp',
   },
   {
     label: 'CSS',
     category: 'Frontend',
     accent: '#1572b6',
-    logo: 'https://cdn.simpleicons.org/css/1572B6',
+    icon: 'mdi-language-css3',
   },
   {
     label: 'HTML',
     category: 'Frontend',
     accent: '#e34f26',
-    logo: 'https://cdn.simpleicons.org/html5/E34F26',
+    icon: 'mdi-language-html5',
   },
   {
     label: 'Ionic',
     category: 'Móvil',
     accent: '#3880ff',
-    logo: 'https://cdn.simpleicons.org/ionic/3880FF',
+    icon: 'mdi-ionic',
   },
   {
     label: 'JavaScript',
     category: 'Frontend',
     accent: '#f7df1e',
-    logo: 'https://cdn.simpleicons.org/javascript/F7DF1E',
+    icon: 'mdi-language-javascript',
   },
   {
     label: 'Laravel',
     category: 'Backend',
     accent: '#ff2d20',
-    logo: 'https://cdn.simpleicons.org/laravel/FF2D20',
+    icon: 'mdi-laravel',
   },
   {
     label: 'Git',
     category: 'Flujo de trabajo',
     accent: '#f05032',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+    icon: 'mdi-git',
   },
   {
     label: 'MySQL',
     category: 'Base de datos',
     accent: '#4479a1',
-    logo: 'https://cdn.simpleicons.org/mysql/4479A1',
+    icon: 'mdi-database',
   },
   {
     label: 'Node.js',
     category: 'Backend',
     accent: '#5fa04e',
-    logo: 'https://cdn.simpleicons.org/nodedotjs/5FA04E',
+    icon: 'mdi-nodejs',
   },
   {
     label: 'PHP',
     category: 'Backend',
     accent: '#777bb4',
-    logo: 'https://cdn.simpleicons.org/php/777BB4',
+    icon: 'mdi-language-php',
   },
   {
     label: 'TypeScript',
     category: 'Frontend',
     accent: '#3178c6',
-    logo: 'https://cdn.simpleicons.org/typescript/3178C6',
+    icon: 'mdi-language-typescript',
   },
   {
     label: 'Vue.js',
     category: 'Frontend',
     accent: '#42b883',
-    logo: 'https://cdn.simpleicons.org/vuedotjs/42B883',
+    icon: 'mdi-vuejs',
   },
   {
     label: 'Python',
     category: 'Backend',
     accent: '#3776ab',
-    logo: 'https://cdn.simpleicons.org/python/3776AB',
+    icon: 'mdi-language-python',
   },
 ]
 
@@ -230,8 +223,6 @@ const primaryTechnologies = computed(() =>
   ),
 )
 
-const brokenLogos = ref(new Set())
-
 const orderedSkillGroups = computed(() =>
   skillGroups.map((group) => ({
     ...group,
@@ -250,37 +241,6 @@ function parseSpanishDate(value) {
     month: monthOrder[monthRaw] || 0,
     year: Number.parseInt(yearRaw, 10) || 0,
   }
-}
-
-function isLogoBroken(label) {
-  return brokenLogos.value.has(label)
-}
-
-function markLogoBroken(label) {
-  const next = new Set(brokenLogos.value)
-  next.add(label)
-  brokenLogos.value = next
-}
-
-function getTechFallback(label) {
-  const fallbackMap = {
-    AWS: 'AWS',
-    'C#': 'C#',
-    CSS: 'CSS',
-    Git: 'Git',
-    HTML: 'HTML',
-    Ionic: 'ION',
-    JavaScript: 'JS',
-    Laravel: 'LAR',
-    MySQL: 'SQL',
-    'Node.js': 'NODE',
-    PHP: 'PHP',
-    TypeScript: 'TS',
-    'Vue.js': 'VUE',
-    Python: 'PY',
-  }
-
-  return fallbackMap[label] || label.slice(0, 3).toUpperCase()
 }
 
 function cleanText(value) {
@@ -468,21 +428,9 @@ function cleanText(value) {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.tech-logo-card__mark img {
-  display: block;
-  width: 28px;
-  height: 28px;
-  max-width: 34px;
-  max-height: 34px;
-  object-fit: contain;
-}
-
-.tech-logo-card__fallback {
-  color: var(--text-primary);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.tech-logo-card__icon {
+  color: var(--tech-accent);
+  filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--tech-accent) 30%, transparent));
 }
 
 .tech-logo-card__title {
