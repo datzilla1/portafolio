@@ -51,7 +51,14 @@
             :style="{ '--tech-accent': tech.accent }"
           >
             <span class="tech-logo-card__mark" :style="{ '--tech-accent': tech.accent }">
-              <v-icon :icon="tech.icon" size="30" class="tech-logo-card__icon" />
+              <img
+                v-if="tech.image"
+                :src="tech.image"
+                :alt="`Logo de ${tech.label}`"
+                class="tech-logo-card__image"
+                loading="lazy"
+              />
+              <v-icon v-else :icon="tech.icon" size="30" class="tech-logo-card__icon" />
             </span>
             <strong class="tech-logo-card__title">{{ tech.label }}</strong>
             <span class="tech-logo-card__domain">{{ tech.category }}</span>
@@ -142,7 +149,7 @@ const primaryTechnologySource = [
     label: 'Ionic',
     category: 'Móvil',
     accent: '#3880ff',
-    icon: 'mdi-ionic',
+    image: '/tech/ionic.svg',
   },
   {
     label: 'JavaScript',
@@ -431,6 +438,13 @@ function cleanText(value) {
 .tech-logo-card__icon {
   color: var(--tech-accent);
   filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--tech-accent) 30%, transparent));
+}
+
+.tech-logo-card__image {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .tech-logo-card__title {
