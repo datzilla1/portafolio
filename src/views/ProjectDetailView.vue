@@ -35,13 +35,20 @@
         <v-row class="section-row project-detail-layout" align="start">
           <v-col cols="12" lg="7">
             <div v-if="galleryItems.length" class="project-gallery-card">
-              <div
+              <button
+                type="button"
                 class="project-active-media"
                 :class="{ 'project-active-media--with-image': activeImage?.src }"
                 :style="activeImage?.src ? imageBackgroundStyle(activeImage.src) : undefined"
+                :aria-label="`Abrir imagen completa de ${project.title}`"
+                @click="openImageDialog"
               >
+                <span class="project-active-media__hint">
+                  <v-icon size="16">mdi-magnify-plus-outline</v-icon>
+                  Ver completa
+                </span>
                 <img :src="activeImage.src" :alt="activeImage.alt" />
-              </div>
+              </button>
 
               <p v-if="activeImage.caption" class="project-gallery-caption">{{ activeImage.caption }}</p>
 
@@ -152,6 +159,30 @@
         </v-row>
       </div>
     </section>
+
+    <v-dialog
+      v-model="isImageDialogOpen"
+      max-width="1200"
+      content-class="project-image-dialog"
+      scrim="rgba(2, 6, 23, 0.88)"
+    >
+      <div v-if="activeImage" class="project-image-modal">
+        <button
+          type="button"
+          class="project-image-modal__close"
+          aria-label="Cerrar imagen completa"
+          @click="isImageDialogOpen = false"
+        >
+          <v-icon size="20">mdi-close</v-icon>
+        </button>
+
+        <img :src="activeImage.src" :alt="activeImage.alt" class="project-image-modal__image" />
+
+        <p v-if="activeImage.caption" class="project-image-modal__caption">
+          {{ activeImage.caption }}
+        </p>
+      </div>
+    </v-dialog>
   </template>
 
   <section v-else class="subpage-hero">
@@ -175,6 +206,7 @@ import { getProjectBySlug, projectTypeMeta } from '../data/projects.js'
 
 const route = useRoute()
 const activeImageIndex = ref(0)
+const isImageDialogOpen = ref(false)
 
 const project = computed(() => getProjectBySlug(route.params.slug))
 
@@ -198,10 +230,19 @@ const imageBackgroundStyle = (src) => ({
   '--project-image-bg': `url("${src}")`,
 })
 
+function openImageDialog() {
+  if (!activeImage.value?.src) {
+    return
+  }
+
+  isImageDialogOpen.value = true
+}
+
 watch(
   () => route.params.slug,
   () => {
     activeImageIndex.value = 0
+    isImageDialogOpen.value = false
   },
 )
 </script>
