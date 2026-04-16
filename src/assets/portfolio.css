@@ -4,6 +4,40 @@
   overflow-x: clip;
 }
 
+html {
+  scrollbar-color: rgba(94, 234, 212, 0.42) rgba(6, 12, 24, 0.92);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.mobile-drawer .v-navigation-drawer__content::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.mobile-drawer .v-navigation-drawer__content::-webkit-scrollbar-track {
+  background:
+    linear-gradient(180deg, rgba(7, 13, 24, 0.98), rgba(5, 10, 20, 0.98));
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.mobile-drawer .v-navigation-drawer__content::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid rgba(6, 12, 24, 0.92);
+  background:
+    linear-gradient(180deg, rgba(94, 234, 212, 0.5), rgba(34, 211, 238, 0.28));
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+.mobile-drawer .v-navigation-drawer__content::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(180deg, rgba(94, 234, 212, 0.7), rgba(34, 211, 238, 0.42));
+}
+
 .shell {
   width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
