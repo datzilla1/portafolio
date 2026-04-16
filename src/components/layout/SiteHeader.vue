@@ -46,6 +46,9 @@
           :key="item.to"
           :title="item.label"
           :to="item.to"
+          class="mobile-drawer__item"
+          active-class="mobile-drawer__item--active"
+          rounded="xl"
           @click="drawer = false"
         />
       </v-list>
