@@ -21,7 +21,7 @@
               Ver proyectos
               <v-icon end>mdi-arrow-right</v-icon>
             </v-btn>
-            <v-btn variant="tonal" size="x-large" class="hero-btn" :href="cvUrl" target="_blank" rel="noreferrer">
+            <v-btn v-if="cvUrl" variant="tonal" size="x-large" class="hero-btn" :href="cvUrl" target="_blank" rel="noreferrer">
               Descargar CV
               <v-icon end>mdi-download</v-icon>
             </v-btn>

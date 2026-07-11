@@ -94,6 +94,14 @@ body::-webkit-scrollbar-thumb:hover,
   object-fit: cover;
 }
 
+.brand-mark__fallback,
+.profile-avatar__fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .brand-copy {
   display: flex;
   flex-direction: column;

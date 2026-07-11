@@ -5,12 +5,18 @@ export { projectTypes, projects }
 export const fullName = 'César Roberto Pérez Ramírez'
 export const brandTitle = 'Desarrollador de software'
 export const profileTitle = 'Técnico en Ingeniería en Desarrollo de Software'
-export const linkedinUrl = 'https://www.linkedin.com/in/c%C3%A9sar-roberto-p%C3%A9rez-ram%C3%ADrez-985a81340'
+// Datos privados ocultos para compartir esta versiÃ³n del portafolio.
+const privateLinkedinUrl = 'https://www.linkedin.com/in/c%C3%A9sar-roberto-p%C3%A9rez-ram%C3%ADrez-985a81340'
 export const email = 'cesar971947@gmail.com'
 export const phoneDisplay = '+503 7017-9192'
 export const phoneHref = 'tel:+50370179192'
-export const cvUrl = '/cv-cesar-roberto-perez-ramirez.pdf'
-export const profileImageUrl = '/foto_perfil.jpeg'
+const privateCvUrl = '/cv-cesar-roberto-perez-ramirez.pdf'
+const privateProfileImageUrl = '/foto_perfil.jpeg'
+
+export const linkedinUrl = privateLinkedinUrl
+export const cvUrl = privateCvUrl
+export const profileImageUrl = privateProfileImageUrl
+export const profileInitials = 'CR'
 
 export const navItems = [
   { to: '/', label: 'Inicio' },
@@ -126,7 +132,8 @@ export const services = [
   },
 ]
 
-export const certifications = [
+// Certificaciones privadas ocultas para compartir esta versiÃ³n del portafolio.
+const privateCertifications = [
   {
     title: 'Introduction to Modern AI',
     issuer: 'Cisco',
@@ -147,6 +154,8 @@ export const certifications = [
   { title: 'CCNA: Introduction to Networks', issuer: 'Cisco', date: 'Febrero 2023', url: 'https://www.credly.com/badges/93a77395-bdb5-4422-81c5-86eb6af5604d/linked_in_profile' },
   { title: 'IT Essentials', issuer: 'Cisco', date: 'Julio 2022' , url: 'https://www.credly.com/badges/26b6d886-2ee5-4b78-89ba-de7f094674a0/linked_in_profile' },
 ]
+
+export const certifications = []
 
 export const skillGroups = [
   {
@@ -280,7 +289,7 @@ export const contactMethods = [
     icon: 'mdi-file-account-outline',
     external: true,
   },
-]
+].filter((item) => item.href)
 
 export const quickMetrics = [
   { label: 'proyectos base', value: String(projects.length).padStart(2, '0') },

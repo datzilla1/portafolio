@@ -7,7 +7,8 @@
         <v-col cols="12" lg="4">
           <div class="profile-card">
             <div class="profile-avatar">
-              <img :src="profileImageUrl" :alt="fullName" class="profile-avatar__image" />
+              <img v-if="profileImageUrl" :src="profileImageUrl" :alt="fullName" class="profile-avatar__image" />
+              <span v-else class="profile-avatar__fallback">{{ profileInitials }}</span>
             </div>
             <p class="profile-name">{{ fullName }}</p>
             <p class="profile-title">{{ profileTitle }}</p>
@@ -22,7 +23,7 @@
               <v-btn icon variant="text" :href="`mailto:${email}`" aria-label="Correo">
                 <v-icon>mdi-email-outline</v-icon>
               </v-btn>
-              <v-btn icon variant="text" :href="linkedinUrl" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <v-btn v-if="linkedinUrl" icon variant="text" :href="linkedinUrl" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                 <v-icon>mdi-linkedin</v-icon>
               </v-btn>
               <v-btn icon variant="text" :href="phoneHref" aria-label="Teléfono">
@@ -66,6 +67,7 @@ import {
   phoneHref,
   profileBadges,
   profileImageUrl,
+  profileInitials,
   profileTitle,
 } from '../../../data/portfolio.js'
 </script>

@@ -4,11 +4,11 @@
     title="Experiencia, formación y stack"
   >
     <template #actions>
-      <v-btn color="primary" size="large" :href="cvUrl" target="_blank" rel="noreferrer">
+      <v-btn v-if="cvUrl" color="primary" size="large" :href="cvUrl" target="_blank" rel="noreferrer">
         Descargar CV
         <v-icon end>mdi-download</v-icon>
       </v-btn>
-      <v-btn variant="outlined" size="large" :href="linkedinUrl" target="_blank" rel="noreferrer">
+      <v-btn v-if="linkedinUrl" variant="outlined" size="large" :href="linkedinUrl" target="_blank" rel="noreferrer">
         Ver LinkedIn
       </v-btn>
     </template>

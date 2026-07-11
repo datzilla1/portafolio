@@ -3,7 +3,8 @@
     <div class="shell nav-shell">
       <RouterLink class="brand-button" to="/">
         <span class="brand-mark">
-          <img :src="profileImageUrl" :alt="fullName" class="brand-mark__image" />
+          <img v-if="profileImageUrl" :src="profileImageUrl" :alt="fullName" class="brand-mark__image" />
+          <span v-else class="brand-mark__fallback">{{ profileInitials }}</span>
         </span>
         <span class="brand-copy">
           <span class="brand-name">{{ fullName }}</span>
@@ -60,7 +61,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import { RouterLink, useRoute } from 'vue-router'
-import { brandTitle, fullName, navItems, profileImageUrl } from '../../data/portfolio.js'
+import { brandTitle, fullName, navItems, profileImageUrl, profileInitials } from '../../data/portfolio.js'
 
 const drawer = ref(false)
 const scrolled = ref(false)

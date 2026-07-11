@@ -3,7 +3,7 @@
     <div class="shell">
       <SectionHeader label="02" title="Certificaciones y habilidades" />
 
-      <div class="resume-certifications__cert-grid">
+      <div v-if="orderedCertifications.length" class="resume-certifications__cert-grid">
         <component
           :is="cert.url ? 'a' : 'article'"
           v-for="cert in orderedCertifications"
