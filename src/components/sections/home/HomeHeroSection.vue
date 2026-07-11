@@ -54,7 +54,7 @@
 
             <div class="availability-note">
               <v-icon size="18">mdi-check-decagram</v-icon>
-              <span>Disponible para colaborar en proyectos reales y seguir fortaleciendo el portafolio.</span>
+              <span>Disponible para colaborar en proyectos.</span>
             </div>
           </div>
         </v-col>
