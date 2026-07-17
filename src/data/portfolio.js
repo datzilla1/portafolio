@@ -293,7 +293,6 @@ export const contactMethods = [
 
 export const quickMetrics = [
   { label: 'proyectos base', value: String(projects.length).padStart(2, '0') },
-  { label: 'certificaciones', value: String(certifications.length).padStart(2, '0') },
   { label: 'áreas técnicas', value: String(services.length).padStart(2, '0') },
 ]
 

@@ -1,7 +1,7 @@
 <template>
   <section class="section-block section-block--surface resume-certifications">
     <div class="shell">
-      <SectionHeader label="02" title="Certificaciones y habilidades" />
+      <SectionHeader label="02" title="Tecnologías y habilidades" />
 
       <div v-if="orderedCertifications.length" class="resume-certifications__cert-grid">
         <component
